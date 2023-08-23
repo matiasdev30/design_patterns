@@ -3,8 +3,8 @@ from abc import ABC, abstractmethod
 class Observable(ABC):
 
     @abstractmethod
-    def notify(fn):
-        fn
+    def notify():
+        pass
 
 class NotificationService(Observable):
     

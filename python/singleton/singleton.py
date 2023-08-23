@@ -35,7 +35,10 @@ appThemeSingleton2 = AppThemeSingleton.get_instance()
 
 print("object 2 [{}]".format(appThemeSingleton2))
 
+appThemeSingleton2.change_settings(sound= True, theme= Theme.Light)
+
 print("object == object 2 : {}".format(appThemeSingleton == appThemeSingleton2))
 
+print("object 2 [{}]".format(appThemeSingleton2))
 
 

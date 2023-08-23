@@ -2,13 +2,19 @@
   * USANDDO O PADRAO OBSERVEBLE
    sistema de notificaçao da chegada do carro*/
 
+
+//Sujeito observado
 abstract class Observable {
-  void notify(Function() callback) {
-    callback();
+  
+  void  notify() {
+   
   }
 }
 
+//Observador
 class NotificationService {
+
+  //Criando a lista de observadores
   List<Observable> observers = [];
 
   void removeObsevable(Observable observable) {
@@ -16,11 +22,14 @@ class NotificationService {
     observers.remove(observable);
   }
 
+  void addObsevable(Observable observable) {
+    print("{user $observable} :: registed");
+    observers.remove(observable);
+  }
+
   notifyUser() {
     for (Observable obs in observers) {
-      obs.notify(() {
-        print("O carro esta disponivel, assento ${observers.indexOf(obs)}");
-      });
+      obs.notify();
     }
   }
 
@@ -35,8 +44,8 @@ class NotificationService {
 
 class User implements Observable {
   @override
-  void notify(Function callback) {
-    callback();
+  void notify() {
+     print("notify-context");
   }
 }
 
@@ -50,10 +59,12 @@ void main(){
   User user3 = User();
 
   //Registando os users no notification service
-  final notficationService = NotificationService()..observers.addAll(<User>[user, user1, user2, user3]);
+  final notficationService = NotificationService();
 
-  //fazer um print do notificaton service para mostrar a lista de users registado
-  print(notficationService);
+  //Registando os users no notification service
+  for (User x in <User>[user, user1, user2, user3]){
+    notficationService.addObsevable(x);
+  }
 
   //remover os users que não serão notificados
   notficationService.removeObsevable(user3);
